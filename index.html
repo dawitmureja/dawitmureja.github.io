@@ -178,6 +178,37 @@
         html:not(.dark) #light-icon { display: none; }
         html:not(.dark) #dark-icon { display: inline-block; }
 
+         /* Styles for hidden items and toggle buttons (Re-added) */
+        .hidden-item {
+            display: none;
+        }
+        .toggle-button {
+            display: block; /* Ensure button takes full width if needed */
+            margin-top: 1rem; /* Space above button */
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            /* Light mode button colors */
+            color: #1d4ed8; /* text-blue-700 */
+            border: 1px solid #bfdbfe; /* border-blue-200 */
+            background-color: #eff6ff; /* bg-blue-50 */
+        }
+        .toggle-button:hover {
+             background-color: #dbeafe; /* hover:bg-blue-100 */
+        }
+        /* Dark mode button colors */
+        .dark .toggle-button {
+            color: #93c5fd; /* dark:text-blue-300 */
+            border-color: #3b82f6; /* dark:border-blue-500 */
+            background-color: #1f2937; /* dark:bg-gray-800 */
+        }
+        .dark .toggle-button:hover {
+             background-color: #374151; /* dark:hover:bg-gray-700 */
+        }
+
+
     </style>
 </head>
 <body>
@@ -258,18 +289,19 @@
                 <li class="news-item">
                     <span class="font-semibold">[Date]:</span> Our paper "[Paper Title]" has been accepted to [Conference/Journal Name]. Looking forward to presenting!
                 </li>
-                <li class="news-item">
+                <li class="news-item hidden-item">
                     <span class="font-semibold">[Date]:</span> Honored to receive the [Award Name] at [Event Name].
                 </li>
-                <li class="news-item">
+                <li class="news-item hidden-item">
                     <span class="font-semibold">[Date]:</span> Started my journey as a Ph.D. candidate at KAIST.
                 </li>
-            </ul>
+                </ul>
+             <button id="news-toggle" class="toggle-button text-sm">Show More</button>
         </section>
 
         <section id="publications" class="mb-12 scroll-mt-20 p-6 rounded-lg shadow-lg">
             <h2 class="text-xl font-bold mb-6 border-b pb-2">Publications</h2>
-            <div id="publications-list" class="space-y-6">
+            <div id="publications-list" class="space-y-4">
                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
                     <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
                          <img src="https://placehold.co/400x300/dbeafe/3b82f6?text=Pub+Image+1" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 dark:border-gray-700 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
@@ -394,23 +426,6 @@
              setTimeout(onScroll, 0); // Use timeout 0 to queue after potential rendering updates
         };
 
-        // Ensure the DOM is fully loaded before adding the event listener for the theme toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleButton = document.getElementById('theme-toggle');
-            if (themeToggleButton) {
-                // console.log('Theme toggle button found.'); // Debugging
-                themeToggleButton.addEventListener('click', () => {
-                    // console.log('Theme toggle button clicked.'); // Debugging
-                    // Toggle based on the class already present on <html>
-                    const isDarkMode = document.documentElement.classList.contains('dark');
-                    applyTheme(isDarkMode ? 'light' : 'dark');
-                });
-            } else {
-                console.error('Theme toggle button not found!'); // Debugging
-            }
-        });
-
-
         // --- Active Nav Link Highlighting ---
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link'); // Select all nav links (desktop and mobile)
@@ -477,11 +492,6 @@
              activateNavLink(activeLink);
         };
 
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('load', () => {
-            setTimeout(onScroll, 100); // Initial check after load
-         });
-
         // --- Close Mobile Menu on Link Click ---
         const mobileMenuElement = document.getElementById('mobile-menu'); // Renamed variable to avoid conflict
         if (mobileMenuElement) {
@@ -495,6 +505,77 @@
                 });
             });
         }
+
+         // --- Generic Toggle Function (Re-added) ---
+        const setupToggle = (buttonId, listId, itemClass, initialVisibleCount) => {
+            const toggleButton = document.getElementById(buttonId);
+            const listContainer = document.getElementById(listId);
+
+            if (!toggleButton || !listContainer) {
+                 console.log(`Toggle setup failed: Button ${buttonId} or List ${listId} not found.`); // Debugging
+                 return; // Exit if elements not found
+            }
+
+            const items = listContainer.querySelectorAll(`.${itemClass}`);
+            let isExpanded = false;
+
+            // Hide items beyond the initial count
+            items.forEach((item, index) => {
+                if (index >= initialVisibleCount) {
+                    item.classList.add('hidden-item');
+                } else {
+                    item.classList.remove('hidden-item'); // Ensure initial items are visible
+                }
+            });
+
+            // Hide button if there are not enough items to hide
+            if (items.length <= initialVisibleCount) {
+                toggleButton.style.display = 'none';
+                return;
+            } else {
+                 toggleButton.style.display = 'block'; // Ensure button is visible if needed
+                 toggleButton.textContent = `Show More (${items.length - initialVisibleCount})`;
+            }
+
+
+            toggleButton.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                items.forEach((item, index) => {
+                    if (index >= initialVisibleCount) {
+                        // Use a timeout to allow CSS transition (if any)
+                        // Although display:none doesn't transition, this structure is useful if you change to opacity/height later
+                        setTimeout(() => {
+                           item.classList.toggle('hidden-item', !isExpanded);
+                        }, 0);
+                    }
+                });
+                toggleButton.textContent = isExpanded ? 'Show Less' : `Show More (${items.length - initialVisibleCount})`;
+            });
+        };
+
+
+        // --- Run Setup on Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup theme toggle listener
+            const themeToggleButton = document.getElementById('theme-toggle');
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', () => {
+                    const isDarkMode = document.documentElement.classList.contains('dark');
+                    applyTheme(isDarkMode ? 'light' : 'dark');
+                });
+            } else {
+                console.error('Theme toggle button not found!');
+            }
+
+            // Setup news toggle
+            setupToggle('news-toggle', 'news-list', 'news-item', 2); // Show 2 news items initially
+
+            // Initial scroll check
+            setTimeout(onScroll, 100);
+        });
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
 
     </script>
 

@@ -4,29 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Personal Webpage</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='10' fill='%231d4ed8'/%3E%3Ccircle cx='50' cy='50' r='35' stroke='%231d4ed8' stroke-width='5' fill='none' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='35' stroke='%231d4ed8' stroke-width='5' fill='none' transform='rotate(-45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='35' stroke='%231d4ed8' stroke-width='5' fill='none'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <script>
-        // Apply dark mode immediately based on localStorage or OS preference
-        // Ensures no flicker on load
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-          console.log("Initial theme set to dark."); // Debugging
-        } else {
-          document.documentElement.classList.remove('dark');
-          console.log("Initial theme set to light."); // Debugging
-        }
-    </script>
     <style>
         /* Apply Inter font globally */
         body {
             font-family: 'Inter', sans-serif;
             scroll-padding-top: 70px; /* Adjusted scroll padding */
-            /* Smooth color transition for dark mode - Standard CSS */
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Keep basic transitions */
         }
         /* Smooth scrolling for anchor links */
         html {
@@ -37,11 +24,6 @@
             font-weight: 700;
             color: #1d4ed8; /* text-blue-700 */
             background-color: #eff6ff; /* bg-blue-50 */
-        }
-        /* Dark mode style for active nav link - Standard CSS */
-        .dark .nav-link.nav-link-active {
-             color: #60a5fa; /* text-blue-400 */
-             background-color: #374151; /* bg-gray-700 */
         }
 
         /* Ensure the image container allows absolute positioning of children */
@@ -109,89 +91,70 @@
             opacity: 0.8;
             transition: all 0.3s ease;
         }
-        /* Adjust logo appearance in dark mode */
-        .dark .logo-image {
-             filter: grayscale(30%) brightness(0.9); /* Example: Slightly less grayscale, slightly dimmer */
-             opacity: 0.9;
-        }
         .logo-container:hover .logo-image {
             filter: grayscale(0%);
             opacity: 1;
         }
-        .dark .logo-container:hover .logo-image {
-             filter: grayscale(0%) brightness(1); /* Full color/brightness on hover */
-             opacity: 1;
-        }
-
-        /* Hide one of the theme toggle icons by default */
-        .dark #light-icon { display: inline-block; }
-        .dark #dark-icon { display: none; }
-        html:not(.dark) #light-icon { display: none; }
-        html:not(.dark) #dark-icon { display: inline-block; }
 
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<body class="bg-gray-100 text-gray-800">
 
-    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <a href="#" class="text-xl font-bold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">Your Name</a>
-                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
-                    <svg id="dark-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 7.072l.707-.707a1 1 0 10-1.414-1.414l-.707.707a1 1 0 001.414 1.414zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                </button>
-            </div>
+                <a href="#" class="text-xl font-bold text-blue-700 hover:text-blue-800">Your Name</a>
+                 </div>
             <div class="hidden md:flex space-x-3">
-                <a href="#about" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 px-3 py-1 rounded-md text-sm">About</a>
-                <a href="#news" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 px-3 py-1 rounded-md text-sm">News</a>
-                <a href="#publications" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 px-3 py-1 rounded-md text-sm">Publications</a>
-                <a href="#awards" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 px-3 py-1 rounded-md text-sm">Awards</a>
-                <a href="#services" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 px-3 py-1 rounded-md text-sm">Services</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-blue-700 px-3 py-1 rounded-md text-sm">About</a>
+                <a href="#news" class="nav-link text-gray-600 hover:text-blue-700 px-3 py-1 rounded-md text-sm">News</a>
+                <a href="#publications" class="nav-link text-gray-600 hover:text-blue-700 px-3 py-1 rounded-md text-sm">Publications</a>
+                <a href="#awards" class="nav-link text-gray-600 hover:text-blue-700 px-3 py-1 rounded-md text-sm">Awards</a>
+                <a href="#services" class="nav-link text-gray-600 hover:text-blue-700 px-3 py-1 rounded-md text-sm">Services</a>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-400 focus:outline-none p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none p-2 rounded-md hover:bg-gray-100">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
-             <a href="#about" class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 py-2">About</a>
-            <a href="#news" class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 py-2">News</a>
-            <a href="#publications" class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 py-2">Publications</a>
-            <a href="#awards" class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 py-2">Awards</a>
-            <a href="#services" class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 py-2">Services</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-3 space-y-1 border-t border-gray-200">
+             <a href="#about" class="nav-link block text-gray-600 hover:text-blue-700 py-2">About</a>
+            <a href="#news" class="nav-link block text-gray-600 hover:text-blue-700 py-2">News</a>
+            <a href="#publications" class="nav-link block text-gray-600 hover:text-blue-700 py-2">Publications</a>
+            <a href="#awards" class="nav-link block text-gray-600 hover:text-blue-700 py-2">Awards</a>
+            <a href="#services" class="nav-link block text-gray-600 hover:text-blue-700 py-2">Services</a>
         </div>
     </header>
 
     <main class="container mx-auto px-6 py-10">
 
         <section id="about" class="mb-12 scroll-mt-20">
-            <div class="flex flex-col md:flex-row items-center md:items-start bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="flex flex-col md:flex-row items-center md:items-start bg-white p-6 rounded-lg shadow-lg">
                 <div class="md:w-1/4 mb-5 md:mb-0 md:mr-6 flex-shrink-0">
                     <img src="https://placehold.co/300x300/e2e8f0/64748b?text=Your+Photo"
                          alt="Your Name - Profile Photo"
-                         class="rounded-full w-40 h-40 md:w-full md:h-auto object-cover mx-auto shadow-lg border-4 border-white dark:border-gray-700 hover:opacity-90 transition-opacity duration-300"
+                         class="rounded-full w-40 h-40 md:w-full md:h-auto object-cover mx-auto shadow-lg border-4 border-white hover:opacity-90 transition-opacity duration-300"
                          onerror="this.onerror=null; this.src='https://placehold.co/300x300/e2e8f0/64748b?text=Image+Not+Found';">
                 </div>
                 <div class="md:w-3/4 text-center md:text-left">
-                    <h1 class="text-2xl md:text-3xl font-bold mb-3 text-gray-900 dark:text-white">Your Name</h1>
-                    <p class="text-md text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-3 text-gray-900">Your Name</h1>
+                    <p class="text-md text-gray-700 mb-3 leading-relaxed">
                         Welcome! I recently completed my Ph.D. in [Your Field of Study] at KAIST (Korea Advanced Institute of Science and Technology), where I also received my B.S. in [Your Major]. My research focuses on [briefly mention your research interests].
                     </p>
-                     <p class="text-md text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                     <p class="text-md text-gray-700 mb-4 leading-relaxed">
                         During my studies, I gained valuable research experience through internships at NVIDIA, Adobe Research (twice), and KAUST. I am passionate about applying my research skills to challenging problems in [mention your field or area of passion].
                     </p>
                     <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
-                        <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow hover:shadow-md text-sm">
+                        <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow hover:shadow-md text-sm">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.586l-4.293-4.293a1 1 0 011.414-1.414L11 11.586V4a1 1 0 112 0v7.586l1.879-1.879a1 1 0 111.414 1.414L12 15.586zM4 14a1 1 0 100 2h16a1 1 0 100-2H4zM4 19h16v-2H4v2z"/></svg>
                             Download CV
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium py-2 px-4 rounded-lg border border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 shadow-sm hover:shadow text-sm">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg border border-blue-600 hover:bg-blue-50 shadow-sm hover:shadow text-sm">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6,3H4.4A1.4,1.4,0,0,0,3,4.4V19.6A1.4,1.4,0,0,0,4.4,21H19.6A1.4,1.4,0,0,0,21,19.6V4.4A1.4,1.4,0,0,0,19.6,3ZM8.3,18.4H5.6V9.7H8.3Zm-1.3-9.8A1.6,1.6,0,1,1,8.6,7,1.6,1.6,0,0,1,7,8.6Zm11.4,9.8H15.6V14.1c0-1.1-.4-1.8-1.3-1.8a1.4,1.4,0,0,0-1.4,1v5.1H10.1V9.7h2.7v1.2a2.9,2.9,0,0,1,2.6-1.4c1.9,0,3.3,1.2,3.3,3.8Z"/></svg>
                             LinkedIn
                         </a>
-                         <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium py-2 px-4 rounded-lg border border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 shadow-sm hover:shadow text-sm">
+                         <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg border border-blue-600 hover:bg-blue-50 shadow-sm hover:shadow text-sm">
                              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9 12 9c-2.977 0-5.548 2.248-6.758 4.769zM12 10c-1.381 0-2.5 1.119-2.5 2.5s1.119 2.5 2.5 2.5 2.5-1.119 2.5-2.5S13.381 10 12 10zM12 24l-4-3v-3.727c1.212.484 2.55.727 4 .727s2.788-.243 4-.727V21l-4 3z"/></svg>
                             Google Scholar
                         </a>
@@ -200,114 +163,114 @@
             </div>
         </section>
 
-        <section id="news" class="mb-12 scroll-mt-20 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-6 text-gray-900 dark:text-white border-b dark:border-gray-700 pb-2">News & Updates</h2>
-            <ul id="news-list" class="space-y-4 list-disc list-inside text-sm text-gray-700 dark:text-gray-300 marker:text-blue-500 dark:marker:text-blue-400">
+        <section id="news" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-2">News & Updates</h2>
+            <ul id="news-list" class="space-y-4 list-disc list-inside text-sm text-gray-700 marker:text-blue-500">
                 <li class="news-item">
-                    <span class="font-semibold text-gray-800 dark:text-gray-100">[Date, e.g., April 2025]:</span> Successfully defended my Ph.D. dissertation titled "[Your Dissertation Title]". Thrilled to start the next chapter!
+                    <span class="font-semibold text-gray-800">[Date, e.g., April 2025]:</span> Successfully defended my Ph.D. dissertation titled "[Your Dissertation Title]". Thrilled to start the next chapter!
                 </li>
                 <li class="news-item">
-                    <span class="font-semibold text-gray-800 dark:text-gray-100">[Date]:</span> Our paper "[Paper Title]" has been accepted to [Conference/Journal Name]. Looking forward to presenting!
+                    <span class="font-semibold text-gray-800">[Date]:</span> Our paper "[Paper Title]" has been accepted to [Conference/Journal Name]. Looking forward to presenting!
                 </li>
                 <li class="news-item">
-                    <span class="font-semibold text-gray-800 dark:text-gray-100">[Date]:</span> Honored to receive the [Award Name] at [Event Name].
+                    <span class="font-semibold text-gray-800">[Date]:</span> Honored to receive the [Award Name] at [Event Name].
                 </li>
                 <li class="news-item">
-                    <span class="font-semibold text-gray-800 dark:text-gray-100">[Date]:</span> Started my journey as a Ph.D. candidate at KAIST.
+                    <span class="font-semibold text-gray-800">[Date]:</span> Started my journey as a Ph.D. candidate at KAIST.
                 </li>
             </ul>
         </section>
 
-        <section id="publications" class="mb-12 scroll-mt-20 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-6 text-gray-900 dark:text-white border-b dark:border-gray-700 pb-2">Publications</h2>
-            <div id="publications-list" class="space-y-6 text-gray-700 dark:text-gray-300">
-                <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
+        <section id="publications" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-2">Publications</h2>
+            <div id="publications-list" class="space-y-6 text-gray-700">
+                <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50">
                     <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
-                         <img src="https://placehold.co/400x300/dbeafe/3b82f6?text=Pub+Image+1" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 dark:border-gray-700 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <img src="https://placehold.co/400x300/dbeafe/3b82f6?text=Pub+Image+1" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
                          <div class="venue-overlay" title="Journal/Conference Name">Journal/Conf Name</div>
                     </div>
                     <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
-                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700 dark:group-hover:text-blue-400 text-gray-900 dark:text-white"> "Title of the Publication." </p>
-                        <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> [Your Name], Co-author 1, Co-author 2. </p>
-                        <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> <em class="italic">Journal/Conference Name</em>, (Year), Vol(Issue), pages. </p>
+                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700 text-gray-900"> "Title of the Publication." </p>
+                        <p class="text-sm mb-1 text-gray-600"> [Your Name], Co-author 1, Co-author 2. </p>
+                        <p class="text-sm mb-1 text-gray-600"> <em class="italic">Journal/Conference Name</em>, (Year), Vol(Issue), pages. </p>
                         <div class="space-x-2 text-xs mt-1">
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[PDF]</a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[DOI Link]</a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[Code/Data]</a>
-                            <span class="text-gray-500 dark:text-gray-500 block sm:inline mt-1 sm:mt-0">(Presented at [Conf Name])</span>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[PDF]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[DOI Link]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[Code/Data]</a>
+                            <span class="text-gray-500 block sm:inline mt-1 sm:mt-0">(Presented at [Conf Name])</span>
                         </div>
                     </div>
                 </div>
-                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-700 pt-4">
+                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 border-t border-gray-200 pt-4">
                     <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
-                         <img src="https://placehold.co/400x300/d1fae5/059669?text=Pub+Image+2" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 dark:border-gray-700 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <img src="https://placehold.co/400x300/d1fae5/059669?text=Pub+Image+2" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
                          <div class="venue-overlay" title="Conference Proceedings Name">Conf Proc Name</div>
                     </div>
                     <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
-                       <p class="font-semibold text-md mb-1 group-hover:text-blue-700 dark:group-hover:text-blue-400 text-gray-900 dark:text-white"> "Another Publication Title." </p>
-                       <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> Co-author 1, [Your Name], Co-author 3. </p>
-                       <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> <em class="italic">Conference Proceedings Name</em>, (Year). </p>
+                       <p class="font-semibold text-md mb-1 group-hover:text-blue-700 text-gray-900"> "Another Publication Title." </p>
+                       <p class="text-sm mb-1 text-gray-600"> Co-author 1, [Your Name], Co-author 3. </p>
+                       <p class="text-sm mb-1 text-gray-600"> <em class="italic">Conference Proceedings Name</em>, (Year). </p>
                         <div class="space-x-2 text-xs mt-1">
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[PDF]</a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[Slides]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[PDF]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[Slides]</a>
                         </div>
                     </div>
                 </div>
-                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-700 pt-4">
+                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 border-t border-gray-200 pt-4">
                     <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
-                         <img src="https://placehold.co/400x300/fee2e2/dc2626?text=Preprint+Viz" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 dark:border-gray-700 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <img src="https://placehold.co/400x300/fee2e2/dc2626?text=Preprint+Viz" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
                          <div class="venue-overlay" title="arXiv Preprint">arXiv Preprint</div>
                     </div>
                     <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
-                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700 dark:group-hover:text-blue-400 text-gray-900 dark:text-white"> "Preprint Title." </p>
-                        <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> [Your Name], Co-author 1. </p>
-                        <p class="text-sm mb-1 text-gray-600 dark:text-gray-400"> <em class="italic">arXiv preprint arXiv:xxxx.xxxxx</em>, (Year). </p>
+                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700 text-gray-900"> "Preprint Title." </p>
+                        <p class="text-sm mb-1 text-gray-600"> [Your Name], Co-author 1. </p>
+                        <p class="text-sm mb-1 text-gray-600"> <em class="italic">arXiv preprint arXiv:xxxx.xxxxx</em>, (Year). </p>
                         <div class="space-x-2 text-xs mt-1">
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">[arXiv Link]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[arXiv Link]</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="awards" class="mb-12 scroll-mt-20 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-6 text-gray-900 dark:text-white border-b dark:border-gray-700 pb-2">Awards and Honors</h2>
-            <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 dark:text-gray-300 marker:text-blue-500 dark:marker:text-blue-400">
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">[Year]:</span> [Award/Honor Name], <span class="text-gray-600 dark:text-gray-400 italic">[Awarding Institution].</span></li>
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">[Year]:</span> [Scholarship/Fellowship Name], <span class="text-gray-600 dark:text-gray-400 italic">[Provider].</span></li>
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">[Year]:</span> [Competition Win], <span class="text-gray-600 dark:text-gray-400 italic">[Event Name].</span></li>
+        <section id="awards" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-2">Awards and Honors</h2>
+            <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 marker:text-blue-500">
+                <li><span class="font-medium text-gray-800">[Year]:</span> [Award/Honor Name], <span class="text-gray-600 italic">[Awarding Institution].</span></li>
+                <li><span class="font-medium text-gray-800">[Year]:</span> [Scholarship/Fellowship Name], <span class="text-gray-600 italic">[Provider].</span></li>
+                <li><span class="font-medium text-gray-800">[Year]:</span> [Competition Win], <span class="text-gray-600 italic">[Event Name].</span></li>
             </ul>
         </section>
 
-        <section id="services" class="mb-12 scroll-mt-20 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-6 text-gray-900 dark:text-white border-b dark:border-gray-700 pb-2">Academic Services</h2>
-             <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 dark:text-gray-300 marker:text-blue-500 dark:marker:text-blue-400">
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">Reviewer:</span> [Journal/Conference Name], [Year(s)].</li>
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">Teaching Assistant:</span> [Course Name], KAIST, [Semester/Year].</li>
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">Organizer:</span> [Workshop Name], [Event], [Year].</li>
-                <li><span class="font-medium text-gray-800 dark:text-gray-100">Volunteer:</span> [Conference Name], [Role], [Year].</li>
+        <section id="services" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-2">Academic Services</h2>
+             <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 marker:text-blue-500">
+                <li><span class="font-medium text-gray-800">Reviewer:</span> [Journal/Conference Name], [Year(s)].</li>
+                <li><span class="font-medium text-gray-800">Teaching Assistant:</span> [Course Name], KAIST, [Semester/Year].</li>
+                <li><span class="font-medium text-gray-800">Organizer:</span> [Workshop Name], [Event], [Year].</li>
+                <li><span class="font-medium text-gray-800">Volunteer:</span> [Conference Name], [Role], [Year].</li>
             </ul>
         </section>
 
     </main>
 
-    <footer class="bg-gray-900 dark:bg-black text-gray-400 dark:text-gray-500 py-6 mt-12"> <div class="container mx-auto px-6 text-center">
+    <footer class="bg-gray-900 text-gray-400 py-6 mt-12"> <div class="container mx-auto px-6 text-center">
              <div class="mb-3 flex justify-center space-x-5">
-                 <a href="mailto:your.email@example.com" class="hover:text-white dark:hover:text-gray-300 inline-flex items-center text-sm" title="Email">
+                 <a href="mailto:your.email@example.com" class="hover:text-white inline-flex items-center text-sm" title="Email">
                      <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.5H2V18.5H22V5.5ZM20 7.5L12 12.5L4 7.5H20ZM11.999 14.5L4 9.5V16.5H20V9.5L11.999 14.5Z"/></svg>
                      Email
                  </a>
-                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white dark:hover:text-gray-300 inline-flex items-center text-sm" title="LinkedIn">
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center text-sm" title="LinkedIn">
                      <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6,3H4.4A1.4,1.4,0,0,0,3,4.4V19.6A1.4,1.4,0,0,0,4.4,21H19.6A1.4,1.4,0,0,0,21,19.6V4.4A1.4,1.4,0,0,0,19.6,3ZM8.3,18.4H5.6V9.7H8.3Zm-1.3-9.8A1.6,1.6,0,1,1,8.6,7,1.6,1.6,0,0,1,7,8.6Zm11.4,9.8H15.6V14.1c0-1.1-.4-1.8-1.3-1.8a1.4,1.4,0,0,0-1.4,1v5.1H10.1V9.7h2.7v1.2a2.9,2.9,0,0,1,2.6-1.4c1.9,0,3.3,1.2,3.3,3.8Z"/></svg>
                      LinkedIn
                  </a>
-                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white dark:hover:text-gray-300 inline-flex items-center text-sm" title="Twitter">
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center text-sm" title="Twitter">
                      <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                      Twitter
                  </a>
              </div>
             <p class="text-sm">&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
-            <p class="text-xs mt-1 text-gray-500 dark:text-gray-600">Template designed with Tailwind CSS.</p>
+            <p class="text-xs mt-1 text-gray-500">Template designed with Tailwind CSS.</p>
         </div>
     </footer>
 
@@ -326,36 +289,6 @@
         if (currentYearElement) {
             currentYearElement.textContent = new Date().getFullYear();
         }
-
-        // --- Theme Toggle ---
-        const applyTheme = (theme) => {
-            console.log('Applying theme:', theme); // Debugging
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            }
-             // Re-check active nav link after theme change
-             setTimeout(onScroll, 0); // Use timeout 0 to queue after potential rendering updates
-        };
-
-        // Ensure the DOM is fully loaded before adding the event listener for the theme toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleButton = document.getElementById('theme-toggle');
-            if (themeToggleButton) {
-                console.log('Theme toggle button found.'); // Debugging
-                themeToggleButton.addEventListener('click', () => {
-                    console.log('Theme toggle button clicked.'); // Debugging
-                    const currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-                    applyTheme(currentTheme);
-                });
-            } else {
-                console.error('Theme toggle button not found!'); // Debugging
-            }
-        });
-
 
         // --- Active Nav Link Highlighting ---
         const sections = document.querySelectorAll('section[id]');
@@ -429,10 +362,11 @@
          });
 
         // --- Close Mobile Menu on Link Click ---
-        if (mobileMenu) {
-            mobileMenu.querySelectorAll('a').forEach(link => {
+        const mobileMenuElement = document.getElementById('mobile-menu'); // Renamed variable to avoid conflict
+        if (mobileMenuElement) {
+            mobileMenuElement.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+                    mobileMenuElement.classList.add('hidden'); // Use the correct variable
                     // Use requestAnimationFrame to ensure smooth scroll finishes before updating highlight
                     requestAnimationFrame(() => {
                          setTimeout(onScroll, 50); // Small delay after animation frame

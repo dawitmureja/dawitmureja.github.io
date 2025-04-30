@@ -14,8 +14,10 @@
         // Ensures no flicker on load
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
+          console.log("Initial theme set to dark."); // Debugging
         } else {
           document.documentElement.classList.remove('dark');
+          console.log("Initial theme set to light."); // Debugging
         }
     </script>
     <style>
@@ -23,21 +25,23 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-padding-top: 70px; /* Adjusted scroll padding */
-            /* Smooth color transition for dark mode */
-            @apply transition-colors duration-300 ease-in-out;
+            /* Smooth color transition for dark mode - Standard CSS */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
         }
         /* Smooth scrolling for anchor links */
         html {
             scroll-behavior: smooth;
         }
-        /* Style for active nav link - Using direct utility classes */
+        /* Style for active nav link - Standard CSS */
         .nav-link.nav-link-active {
             font-weight: 700;
-            @apply text-blue-700 bg-blue-50;
+            color: #1d4ed8; /* text-blue-700 */
+            background-color: #eff6ff; /* bg-blue-50 */
         }
-        /* Dark mode style for active nav link */
+        /* Dark mode style for active nav link - Standard CSS */
         .dark .nav-link.nav-link-active {
-             @apply text-blue-400 bg-gray-700;
+             color: #60a5fa; /* text-blue-400 */
+             background-color: #374151; /* bg-gray-700 */
         }
 
         /* Ensure the image container allows absolute positioning of children */
@@ -119,10 +123,6 @@
              opacity: 1;
         }
 
-        /* Ensure smooth transitions on elements changing color */
-        section, header, footer, div, p, h1, h2, ul, li, span, a, button {
-             @apply transition-colors duration-300 ease-in-out;
-        }
         /* Hide one of the theme toggle icons by default */
         .dark #light-icon { display: inline-block; }
         .dark #dark-icon { display: none; }
@@ -328,9 +328,8 @@
         }
 
         // --- Theme Toggle ---
-        const themeToggleButton = document.getElementById('theme-toggle');
-
         const applyTheme = (theme) => {
+            console.log('Applying theme:', theme); // Debugging
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
@@ -339,15 +338,24 @@
                 localStorage.theme = 'light';
             }
              // Re-check active nav link after theme change
-             setTimeout(onScroll, 0);
+             setTimeout(onScroll, 0); // Use timeout 0 to queue after potential rendering updates
         };
 
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener('click', () => {
-                const currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-                applyTheme(currentTheme);
-            });
-        }
+        // Ensure the DOM is fully loaded before adding the event listener for the theme toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            if (themeToggleButton) {
+                console.log('Theme toggle button found.'); // Debugging
+                themeToggleButton.addEventListener('click', () => {
+                    console.log('Theme toggle button clicked.'); // Debugging
+                    const currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                    applyTheme(currentTheme);
+                });
+            } else {
+                console.error('Theme toggle button not found!'); // Debugging
+            }
+        });
+
 
         // --- Active Nav Link Highlighting ---
         const sections = document.querySelectorAll('section[id]');

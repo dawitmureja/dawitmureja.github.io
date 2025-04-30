@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Webpage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-padding-top: 70px; /* Adjusted scroll padding */
+        }
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Style for active nav link */
+        .nav-link-active {
+            font-weight: 700;
+            color: #1d4ed8; /* Example active color (blue-700) */
+            background-color: #eff6ff; /* Light blue background for active link */
+        }
+        /* Ensure the image container allows absolute positioning of children */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            transition: transform 0.3s ease-in-out;
+        }
+         /* Style for the venue overlay - AT THE TOP */
+        .venue-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: white;
+            padding: 0.25rem 0.5rem; /* Slightly smaller padding */
+            font-size: 0.7rem; /* Slightly smaller font */
+            line-height: 1rem;
+            text-align: center;
+            border-top-left-radius: 0.375rem;
+            border-top-right-radius: 0.375rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s ease;
+        }
+        /* Hover effect for publication items */
+        .publication-item:hover .image-container {
+            transform: scale(1.03);
+        }
+         .publication-item:hover .venue-overlay {
+             background-color: rgba(29, 78, 216, 0.8);
+         }
+         .publication-item {
+             transition: box-shadow 0.3s ease-in-out;
+         }
+        /* Add transitions to links and buttons for smooth hover */
+        a, button {
+            transition: all 0.2s ease-in-out;
+        }
+        /* Style for inline SVGs used as icons */
+        .icon {
+             display: inline-block;
+             width: 1.1em;
+             height: 1.1em;
+             margin-right: 0.4em;
+             vertical-align: -0.15em;
+        }
+        /* Styling for logos (if you decide to add them back elsewhere) */
+        .logo-container {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        .logo-container:hover {
+             transform: scale(1.05);
+        }
+        .logo-image {
+            object-fit: contain;
+            max-height: 40px;
+            width: auto;
+            filter: grayscale(50%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .logo-container:hover .logo-image {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        /* Removed styles for hidden-item and toggle-button */
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center"> <div>
+                <a href="#" class="text-xl font-bold text-blue-700 hover:text-blue-800">Your Name</a> </div>
+            <div class="hidden md:flex space-x-3"> <a href="#about" class="text-gray-600 hover:text-blue-700 nav-link px-3 py-1 rounded-md text-sm">About</a> <a href="#news" class="text-gray-600 hover:text-blue-700 nav-link px-3 py-1 rounded-md text-sm">News</a>
+                <a href="#publications" class="text-gray-600 hover:text-blue-700 nav-link px-3 py-1 rounded-md text-sm">Publications</a>
+                <a href="#awards" class="text-gray-600 hover:text-blue-700 nav-link px-3 py-1 rounded-md text-sm">Awards</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-700 nav-link px-3 py-1 rounded-md text-sm">Services</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none p-2 rounded-md hover:bg-gray-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg> </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-3 space-y-1 border-t border-gray-200"> <a href="#about" class="block text-gray-600 hover:text-blue-700 nav-link py-2">About</a>
+            <a href="#news" class="block text-gray-600 hover:text-blue-700 nav-link py-2">News</a>
+            <a href="#publications" class="block text-gray-600 hover:text-blue-700 nav-link py-2">Publications</a>
+            <a href="#awards" class="block text-gray-600 hover:text-blue-700 nav-link py-2">Awards</a>
+            <a href="#services" class="block text-gray-600 hover:text-blue-700 nav-link py-2">Services</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10"> <section id="about" class="mb-12 scroll-mt-20"> <div class="flex flex-col md:flex-row items-center md:items-start bg-white p-6 rounded-lg shadow-lg"> <div class="md:w-1/4 mb-5 md:mb-0 md:mr-6 flex-shrink-0"> <img src="https://placehold.co/300x300/e2e8f0/64748b?text=Your+Photo"
+                         alt="Your Name - Profile Photo"
+                         class="rounded-full w-40 h-40 md:w-full md:h-auto object-cover mx-auto shadow-lg border-4 border-white hover:opacity-90 transition-opacity duration-300" onerror="this.onerror=null; this.src='https://placehold.co/300x300/e2e8f0/64748b?text=Image+Not+Found';">
+                </div>
+                <div class="md:w-3/4 text-center md:text-left">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-3 text-gray-900">Your Name</h1> <p class="text-md text-gray-700 mb-3 leading-relaxed"> Welcome! I recently completed my Ph.D. in [Your Field of Study] at KAIST (Korea Advanced Institute of Science and Technology), where I also received my B.S. in [Your Major]. My research focuses on [briefly mention your research interests].
+                    </p>
+                     <p class="text-md text-gray-700 mb-4 leading-relaxed"> During my studies, I gained valuable research experience through internships at NVIDIA, Adobe Research (twice), and KAUST. I am passionate about applying my research skills to challenging problems in [mention your field or area of passion].
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-4"> <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow hover:shadow-md text-sm"> <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.586l-4.293-4.293a1 1 0 011.414-1.414L11 11.586V4a1 1 0 112 0v7.586l1.879-1.879a1 1 0 111.414 1.414L12 15.586zM4 14a1 1 0 100 2h16a1 1 0 100-2H4zM4 19h16v-2H4v2z"/></svg>
+                            Download CV
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg border border-blue-600 hover:bg-blue-50 shadow-sm hover:shadow text-sm">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6,3H4.4A1.4,1.4,0,0,0,3,4.4V19.6A1.4,1.4,0,0,0,4.4,21H19.6A1.4,1.4,0,0,0,21,19.6V4.4A1.4,1.4,0,0,0,19.6,3ZM8.3,18.4H5.6V9.7H8.3Zm-1.3-9.8A1.6,1.6,0,1,1,8.6,7,1.6,1.6,0,0,1,7,8.6Zm11.4,9.8H15.6V14.1c0-1.1-.4-1.8-1.3-1.8a1.4,1.4,0,0,0-1.4,1v5.1H10.1V9.7h2.7v1.2a2.9,2.9,0,0,1,2.6-1.4c1.9,0,3.3,1.2,3.3,3.8Z"/></svg>
+                            LinkedIn
+                        </a>
+                         <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg border border-blue-600 hover:bg-blue-50 shadow-sm hover:shadow text-sm">
+                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9 12 9c-2.977 0-5.548 2.248-6.758 4.769zM12 10c-1.381 0-2.5 1.119-2.5 2.5s1.119 2.5 2.5 2.5 2.5-1.119 2.5-2.5S13.381 10 12 10zM12 24l-4-3v-3.727c1.212.484 2.55.727 4 .727s2.788-.243 4-.727V21l-4 3z"/></svg>
+                            Google Scholar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg"> <h2 class="text-xl font-bold mb-6 text-gray-900 border-b pb-2">News & Updates</h2> <ul id="news-list" class="space-y-4 list-disc list-inside text-sm text-gray-700 marker:text-blue-500"> <li class="news-item">
+                    <span class="font-semibold text-gray-800">[Date, e.g., April 2025]:</span> Successfully defended my Ph.D. dissertation titled "[Your Dissertation Title]". Thrilled to start the next chapter!
+                </li>
+                <li class="news-item">
+                    <span class="font-semibold text-gray-800">[Date]:</span> Our paper "[Paper Title]" has been accepted to [Conference/Journal Name]. Looking forward to presenting!
+                </li>
+                <li class="news-item">
+                    <span class="font-semibold text-gray-800">[Date]:</span> Honored to receive the [Award Name] at [Event Name].
+                </li>
+                <li class="news-item">
+                    <span class="font-semibold text-gray-800">[Date]:</span> Started my journey as a Ph.D. candidate at KAIST.
+                </li>
+                </ul>
+             </section>
+
+        <section id="publications" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg"> <h2 class="text-xl font-bold mb-6 text-gray-900 border-b pb-2">Publications</h2> <div id="publications-list" class="space-y-6 text-gray-700"> <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50"> <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md"> <img src="https://placehold.co/400x300/dbeafe/3b82f6?text=Pub+Image+1" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <div class="venue-overlay" title="Journal/Conference Name">Journal/Conf Name</div>
+                    </div>
+                    <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
+                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700"> "Title of the Publication." </p> <p class="text-sm mb-1 text-gray-600"> [Your Name], Co-author 1, Co-author 2. </p> <p class="text-sm mb-1 text-gray-600"> <em class="italic">Journal/Conference Name</em>, (Year), Vol(Issue), pages. </p> <div class="space-x-2 text-xs mt-1"> <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[PDF]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[DOI Link]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[Code/Data]</a>
+                            <span class="text-gray-500 block sm:inline mt-1 sm:mt-0">(Presented at [Conf Name])</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 border-t border-gray-200 pt-4">
+                    <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
+                         <img src="https://placehold.co/400x300/d1fae5/059669?text=Pub+Image+2" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <div class="venue-overlay" title="Conference Proceedings Name">Conf Proc Name</div>
+                    </div>
+                    <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
+                       <p class="font-semibold text-md mb-1 group-hover:text-blue-700"> "Another Publication Title." </p>
+                       <p class="text-sm mb-1 text-gray-600"> Co-author 1, [Your Name], Co-author 3. </p>
+                       <p class="text-sm mb-1 text-gray-600"> <em class="italic">Conference Proceedings Name</em>, (Year). </p>
+                        <div class="space-x-2 text-xs mt-1">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[PDF]</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[Slides]</a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="publication-item flex flex-col sm:flex-row items-start group p-3 rounded-lg hover:bg-gray-50 border-t border-gray-200 pt-4">
+                    <div class="w-full sm:w-1/4 md:w-1/5 lg:w-1/6 mb-3 sm:mb-0 sm:mr-4 flex-shrink-0 image-container shadow-md">
+                         <img src="https://placehold.co/400x300/fee2e2/dc2626?text=Preprint+Viz" alt="Publication Visual" class="w-full h-auto object-cover border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Image+Missing';">
+                         <div class="venue-overlay" title="arXiv Preprint">arXiv Preprint</div>
+                    </div>
+                    <div class="w-full sm:w-3/4 md:w-4/5 lg:w-5/6">
+                        <p class="font-semibold text-md mb-1 group-hover:text-blue-700"> "Preprint Title." </p>
+                        <p class="text-sm mb-1 text-gray-600"> [Your Name], Co-author 1. </p>
+                        <p class="text-sm mb-1 text-gray-600"> <em class="italic">arXiv preprint arXiv:xxxx.xxxxx</em>, (Year). </p>
+                        <div class="space-x-2 text-xs mt-1">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">[arXiv Link]</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+             </section>
+
+        <section id="awards" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg"> <h2 class="text-xl font-bold mb-6 text-gray-900 border-b pb-2">Awards and Honors</h2> <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 marker:text-blue-500"> <li><span class="font-medium text-gray-800">[Year]:</span> [Award/Honor Name], <span class="text-gray-600 italic">[Awarding Institution].</span></li>
+                <li><span class="font-medium text-gray-800">[Year]:</span> [Scholarship/Fellowship Name], <span class="text-gray-600 italic">[Provider].</span></li>
+                <li><span class="font-medium text-gray-800">[Year]:</span> [Competition Win], <span class="text-gray-600 italic">[Event Name].</span></li>
+            </ul>
+        </section>
+
+        <section id="services" class="mb-12 scroll-mt-20 bg-white p-6 rounded-lg shadow-lg"> <h2 class="text-xl font-bold mb-6 text-gray-900 border-b pb-2">Academic Services</h2> <ul class="space-y-3 list-disc list-inside text-sm text-gray-700 marker:text-blue-500"> <li><span class="font-medium text-gray-800">Reviewer:</span> [Journal/Conference Name], [Year(s)].</li>
+                <li><span class="font-medium text-gray-800">Teaching Assistant:</span> [Course Name], KAIST, [Semester/Year].</li>
+                <li><span class="font-medium text-gray-800">Organizer:</span> [Workshop Name], [Event], [Year].</li>
+                <li><span class="font-medium text-gray-800">Volunteer:</span> [Conference Name], [Role], [Year].</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-6 mt-12"> <div class="container mx-auto px-6 text-center">
+             <div class="mb-3 flex justify-center space-x-5"> <a href="mailto:your.email@example.com" class="hover:text-white inline-flex items-center text-sm" title="Email"> <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.5H2V18.5H22V5.5ZM20 7.5L12 12.5L4 7.5H20ZM11.999 14.5L4 9.5V16.5H20V9.5L11.999 14.5Z"/></svg> Email
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center text-sm" title="LinkedIn">
+                     <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6,3H4.4A1.4,1.4,0,0,0,3,4.4V19.6A1.4,1.4,0,0,0,4.4,21H19.6A1.4,1.4,0,0,0,21,19.6V4.4A1.4,1.4,0,0,0,19.6,3ZM8.3,18.4H5.6V9.7H8.3Zm-1.3-9.8A1.6,1.6,0,1,1,8.6,7,1.6,1.6,0,0,1,7,8.6Zm11.4,9.8H15.6V14.1c0-1.1-.4-1.8-1.3-1.8a1.4,1.4,0,0,0-1.4,1v5.1H10.1V9.7h2.7v1.2a2.9,2.9,0,0,1,2.6-1.4c1.9,0,3.3,1.2,3.3,3.8Z"/></svg>
+                     LinkedIn
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-white inline-flex items-center text-sm" title="Twitter">
+                     <svg class="icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                     Twitter
+                 </a>
+             </div>
+            <p class="text-sm">&copy; <span id="current-year"></span> Your Name. All rights reserved.</p> <p class="text-xs mt-1 text-gray-400">Template designed with Tailwind CSS.</p> </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // --- Set Current Year ---
+        const currentYearElement = document.getElementById('current-year');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+
+        // --- Active Nav Link Highlighting ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const headerOffset = 70; // Adjusted offset
+
+        const activateNavLink = (link) => {
+             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('nav-link-active', 'bg-blue-50'));
+             if (link) {
+                 const desktopLink = document.querySelector(`header .hidden a.nav-link[href="${link.getAttribute('href')}"]`);
+                 if (desktopLink) desktopLink.classList.add('nav-link-active', 'bg-blue-50');
+                 const mobileLink = document.querySelector(`#mobile-menu a.nav-link[href="${link.getAttribute('href')}"]`);
+                 if (mobileLink) mobileLink.classList.add('nav-link-active');
+             }
+        }
+
+        const onScroll = () => {
+            let currentSectionId = '';
+            let minDistance = Infinity;
+            let firstSectionId = sections.length > 0 ? sections[0].getAttribute('id') : '';
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerOffset;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                    currentSectionId = section.getAttribute('id');
+                    minDistance = 0;
+                    return;
+                }
+
+                if (minDistance > 0) {
+                    const distance = Math.abs(scrollY - sectionTop);
+                     if (scrollY < sectionBottom && distance < minDistance) {
+                        minDistance = distance;
+                        currentSectionId = section.getAttribute('id');
+                    }
+                }
+            });
+
+            // Correctly handle edge case for the very top of the page
+            if (sections.length > 0 && scrollY < sections[0].offsetTop - headerOffset) {
+                 currentSectionId = firstSectionId;
+            }
+
+            // Correctly handle edge case for scrolling past the last section
+            if (sections.length > 0 && scrollY >= sections[sections.length - 1].offsetTop - headerOffset + sections[sections.length - 1].offsetHeight) {
+                currentSectionId = sections[sections.length - 1].getAttribute('id');
+            }
+
+
+             const activeLink = document.querySelector(`.nav-link[href="#${currentSectionId}"]`);
+             activateNavLink(activeLink);
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('load', () => {
+            setTimeout(onScroll, 100); // Initial check after load
+         });
+
+        // --- Close Mobile Menu on Link Click ---
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    // Use requestAnimationFrame to ensure smooth scroll finishes before updating highlight
+                    requestAnimationFrame(() => {
+                         setTimeout(onScroll, 50); // Small delay after animation frame
+                    });
+                });
+            });
+        }
+
+        // Removed the setupToggle function and related calls
+
+    </script>
+
+</body>
+</html>
